@@ -8,15 +8,14 @@ h1 {
 	display: flex;
 	color: blue;
 	font-family: "Master";
-	span {
-		color: red;
-	}
+	justify-content: center;
 }
 
-.wrapper {
-	background-image: url(../assets/img/test.png);
-	background-size: cover;
+h2 {
+	font-family: "Master";
+	text-align: center;
 }
+
 img {
 	width: 300px;
 	height: 300px;

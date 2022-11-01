@@ -24,7 +24,7 @@
 		"path": "^0.12.7",
 		"postcss-loader": "^7.0.1",
 		"pug": "^3.0.2",
-		"pug-loader": "^1.0.2",
+		"pug3-loader": "^2.4.3",
 		"sass": "^1.55.0",
 		"sass-loader": "^13.1.0",
 		"style-loader": "^3.3.1",
@@ -49,6 +49,7 @@
 	"homepage": "https://github.com/DnD-developer/startProject-webpack#readme",
 	"dependencies": {
 		"core-js": "^3.26.0",
-		"normalize.css": "^8.0.1"
+		"normalize.css": "^8.0.1",
+		"reset-css": "^5.0.1"
 	}
 }

@@ -15,7 +15,7 @@ module.exports = {
 		paths: PATHS
 	},
 	entry: {
-		main: [PATHS.app]
+		main: PATHS.app
 	},
 	output: {
 		filename: `${PATHS.assets}js/[name]-[contenthash].js`,
@@ -78,34 +78,49 @@ module.exports = {
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
 				type: "asset/resource",
 				generator: {
-					filename: `${PATHS.assets}fonts/[name][ext]`
+					filename: `${PATHS.assets}fonts/[name]-[contenthash][ext]`
 				}
 			},
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: "asset/resource",
 				generator: {
-					filename: `${PATHS.assets}img/[name][ext]`
+					filename: `${PATHS.assets}img/[name]-[contenthash][ext]`
 				}
 			},
 			{
-				test: /\.html$/,
-				use: "html-loader"
+				test: /\.pug$/,
+				use: [
+					{
+						loader: "pug3-loader",
+						options: {
+							pretty: true
+						}
+					}
+				]
 			}
+			// {
+			// 	test: /\.html$/,
+			// 	use: [
+			// 		{
+			// 			loader: "html-loader"
+			// 		}
+			// 	]
+			// },
 		]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: `${PATHS.assets}css/[name]-[contenthash].css`
 		}),
-		new CopyWebpackPlugin({
-			patterns: [{ from: `${PATHS.assetsStart}/static`, to: `${PATHS.assets}static` }]
-		}),
+		// new CopyWebpackPlugin({
+		// 	patterns: [{ from: `${PATHS.assetsStart}/static`, to: `${PATHS.assets}static` }]
+		// }),
 		new CleanWebpackPlugin(),
 		new HTMLWebpackPlugin({
 			hash: false,
 			scriptLoading: "blocking",
-			template: `${PATHS.app}/layout/pages/index.html`,
+			template: `${PATHS.app}/layout/pages/index.pug`,
 			filename: "index.html"
 		})
 	]
