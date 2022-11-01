@@ -1,24 +1,55 @@
 {
-  "name": "start-package",
-  "version": "1.0.0",
-  "description": " Starting assembly of D&D.projects for frontend development",
-  "main": "index.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DnD-developer/startProject-webpack.git"
-  },
-  "keywords": [
-    "webpack",
-    "D&D.projects"
-  ],
-  "author": "SalimCat",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DnD-developer/startProject-webpack/issues"
-  },
-  "homepage": "https://github.com/DnD-developer/startProject-webpack#readme"
+	"name": "start-package",
+	"version": "1.0.0",
+	"description": " Starting assembly of D&D.projects for frontend development",
+	"main": "index.js",
+	"scripts": {
+		"dev": "webpack-dev-server --config webpack/webpack.dev.js",
+		"build": "webpack --config webpack/webpack.prod.js"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.19.3",
+		"@babel/core": "^7.19.6",
+		"@babel/preset-env": "^7.19.4",
+		"autoprefixer": "^10.4.13",
+		"clean-webpack-plugin": "^4.0.0",
+		"copy-webpack-plugin": "^11.0.0",
+		"css-loader": "^6.7.1",
+		"cssnano": "^5.1.14",
+		"html-loader": "^4.2.0",
+		"html-webpack-plugin": "^5.5.0",
+		"jquery": "^3.6.1",
+		"mini-css-extract-plugin": "^2.6.1",
+		"path": "^0.12.7",
+		"postcss-loader": "^7.0.1",
+		"pug": "^3.0.2",
+		"pug-loader": "^1.0.2",
+		"sass": "^1.55.0",
+		"sass-loader": "^13.1.0",
+		"style-loader": "^3.3.1",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0",
+		"webpack-dev-server": "^4.11.1",
+		"webpack-merge": "^5.8.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DnD-developer/startProject-webpack.git"
+	},
+	"keywords": [
+		"webpack",
+		"D&D.projects"
+	],
+	"author": "SalimCat",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DnD-developer/startProject-webpack/issues"
+	},
+	"homepage": "https://github.com/DnD-developer/startProject-webpack#readme",
+	"dependencies": {
+		"@babel/polyfill": "^7.12.1",
+		"babel-loader": "^9.0.0",
+		"core-js": "^3.26.0",
+		"normalize.css": "^8.0.1"
+	}
 }
