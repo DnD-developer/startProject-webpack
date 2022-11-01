@@ -12,6 +12,7 @@
 		"@babel/core": "^7.19.6",
 		"@babel/preset-env": "^7.19.4",
 		"autoprefixer": "^10.4.13",
+		"babel-loader": "^9.0.1",
 		"clean-webpack-plugin": "^4.0.0",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.1",
@@ -47,8 +48,6 @@
 	},
 	"homepage": "https://github.com/DnD-developer/startProject-webpack#readme",
 	"dependencies": {
-		"@babel/polyfill": "^7.12.1",
-		"babel-loader": "^9.0.0",
 		"core-js": "^3.26.0",
 		"normalize.css": "^8.0.1"
 	}

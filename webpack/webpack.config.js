@@ -15,7 +15,7 @@ module.exports = {
 		paths: PATHS
 	},
 	entry: {
-		main: PATHS.app
+		main: [PATHS.app]
 	},
 	output: {
 		filename: `${PATHS.assets}js/[name]-[contenthash].js`,
@@ -40,7 +40,18 @@ module.exports = {
 
 				exclude: "/node_modules/",
 				use: {
-					loader: "babel-loader"
+					loader: "babel-loader",
+					options: {
+						presets: [
+							[
+								"@babel/preset-env",
+								{
+									useBuiltIns: "entry",
+									corejs: 3
+								}
+							]
+						]
+					}
 				}
 			},
 			{
@@ -62,6 +73,20 @@ module.exports = {
 						options: { sourceMap: true }
 					}
 				]
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/i,
+				type: "asset/resource",
+				generator: {
+					filename: `${PATHS.assets}fonts/[name][ext]`
+				}
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: "asset/resource",
+				generator: {
+					filename: `${PATHS.assets}img/[name][ext]`
+				}
 			},
 			{
 				test: /\.html$/,
