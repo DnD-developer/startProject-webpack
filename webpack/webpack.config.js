@@ -1,8 +1,8 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
+const fs = require("fs")
 
 const PATHS = {
 	dist: path.join(__dirname, "../dist"),
@@ -10,6 +10,10 @@ const PATHS = {
 	assets: "assets/"
 }
 PATHS["assetsStart"] = path.join(PATHS.app, "./layout/assets")
+
+const PAGES_DIR = `${PATHS.app}/layout/pages/`
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith(".pug"))
+
 module.exports = {
 	externals: {
 		paths: PATHS
@@ -19,7 +23,8 @@ module.exports = {
 	},
 	output: {
 		filename: `${PATHS.assets}js/[name]-[contenthash].js`,
-		path: PATHS.dist
+		path: PATHS.dist,
+		clean: true
 	},
 	optimization: {
 		splitChunks: {
@@ -35,25 +40,6 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{
-				test: /\.js$/,
-
-				exclude: "/node_modules/",
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: [
-							[
-								"@babel/preset-env",
-								{
-									useBuiltIns: "entry",
-									corejs: 3
-								}
-							]
-						]
-					}
-				}
-			},
 			{
 				test: /\.s[ac]ss$/i,
 				use: [
@@ -82,31 +68,9 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.(png|svg|jpg|jpeg|gif)$/i,
-				type: "asset/resource",
-				generator: {
-					filename: `${PATHS.assets}img/[name]-[contenthash][ext]`
-				}
-			},
-			{
-				test: /\.pug$/,
-				use: [
-					{
-						loader: "pug3-loader",
-						options: {
-							pretty: true
-						}
-					}
-				]
+				test: /\.html$/i,
+				loader: "html-loader"
 			}
-			// {
-			// 	test: /\.html$/,
-			// 	use: [
-			// 		{
-			// 			loader: "html-loader"
-			// 		}
-			// 	]
-			// },
 		]
 	},
 	plugins: [
@@ -116,12 +80,14 @@ module.exports = {
 		// new CopyWebpackPlugin({
 		// 	patterns: [{ from: `${PATHS.assetsStart}/static`, to: `${PATHS.assets}static` }]
 		// }),
-		new CleanWebpackPlugin(),
-		new HTMLWebpackPlugin({
-			hash: false,
-			scriptLoading: "blocking",
-			template: `${PATHS.app}/layout/pages/index.pug`,
-			filename: "index.html"
-		})
+		...PAGES.map(
+			page =>
+				new HTMLWebpackPlugin({
+					hash: false,
+					scriptLoading: "blocking",
+					template: `${PAGES_DIR}/${page}`,
+					minify: false
+				})
+		)
 	]
 }

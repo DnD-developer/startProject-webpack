@@ -19,6 +19,53 @@ const devWebpackconfig = merge(webpackConfig, {
 		},
 		port: 8081
 	},
+	module: {
+		rules: [
+			{
+				test: /\.pug$/,
+				exclude: "/node_modules/",
+				use: [
+					{
+						loader: "pug3-loader",
+						options: {
+							pretty: true
+						}
+					}
+				]
+			},
+			{
+				test: /\.js$/,
+
+				exclude: "/node_modules/",
+				use: [
+					{
+						loader: "babel-loader",
+						options: {
+							presets: [
+								[
+									"@babel/preset-env",
+									{
+										useBuiltIns: "entry",
+										corejs: 3
+									}
+								]
+							]
+						}
+					},
+					{
+						loader: "eslint-loader"
+					},
+					{
+						test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+						type: "asset/resource",
+						generator: {
+							filename: `${PATHS.assets}img/[name]-[contenthash][ext]`
+						}
+					}
+				]
+			}
+		]
+	},
 	devtool: "eval-cheap-module-source-map",
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({

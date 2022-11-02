@@ -4,20 +4,34 @@
 @import "./global/global";
 @import "./global/animation";
 
+body {
+	background-color: black;
+}
 h1 {
-	display: flex;
-	color: blue;
+	color: red;
 	font-family: "Master";
-	justify-content: center;
+	font-size: 40px;
+	margin-bottom: 20px;
 }
 
 h2 {
+	color: red;
 	font-family: "Master";
-	text-align: center;
+	font-size: 30px;
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 img {
+	border-radius: 30px;
+	margin-top: 20px;
 	width: 300px;
 	height: 300px;
 }
+
 @import "./global/media";
