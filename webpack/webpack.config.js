@@ -1,5 +1,4 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
 const fs = require("fs")
@@ -9,7 +8,7 @@ const PATHS = {
 	app: path.join(__dirname, "../app"),
 	assets: "assets/"
 }
-PATHS["assetsStart"] = path.join(PATHS.app, "./layout/assets")
+PATHS.assetsStart = path.join(PATHS.app, "./layout/assets")
 
 const PAGES_DIR = `${PATHS.app}/layout/pages/`
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith(".pug"))
@@ -77,17 +76,6 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: `${PATHS.assets}css/[name]-[contenthash].css`
 		}),
-		// new CopyWebpackPlugin({
-		// 	patterns: [{ from: `${PATHS.assetsStart}/static`, to: `${PATHS.assets}static` }]
-		// }),
-		...PAGES.map(
-			page =>
-				new HTMLWebpackPlugin({
-					hash: false,
-					scriptLoading: "blocking",
-					template: `${PAGES_DIR}/${page}`,
-					minify: false
-				})
-		)
+		...PAGES.map(page => new HTMLWebpackPlugin({ hash: false, scriptLoading: "blocking", template: `${PAGES_DIR}/${page}`, minify: false }))
 	]
 }

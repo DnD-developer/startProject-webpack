@@ -1,9 +1,9 @@
-const { merge } = require("webpack-merge")
-const webpackConfig = require("./webpack.config")
+import { merge } from "webpack-merge"
+import webpackConfig, { externals } from "./webpack.config"
 
 const prodWebpackConfig = merge(webpackConfig, {
 	mode: "production",
-	target: `browserslist`,
+	target: "browserslist",
 	plugins: [],
 	module: {
 		rules: [
@@ -42,7 +42,7 @@ const prodWebpackConfig = merge(webpackConfig, {
 				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
 				type: "asset/resource",
 				generator: {
-					filename: `${webpackConfig.externals.paths.assets}img/[name]-[contenthash][ext]`
+					filename: `${externals.paths.assets}img/[name]-[contenthash][ext]`
 				},
 				use: [
 					{
@@ -71,6 +71,6 @@ const prodWebpackConfig = merge(webpackConfig, {
 		]
 	}
 })
-module.exports = new Promise((resolve, reject) => {
+export default new Promise(resolve => {
 	resolve(prodWebpackConfig)
 })
