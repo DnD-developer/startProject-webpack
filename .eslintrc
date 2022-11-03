@@ -1,12 +1,24 @@
 {
-	"parser": "babel-eslint",
 	"extends": "airbnb-base",
 	"env": {
 		"es6": true,
 		"browser": true,
 		"jest": true
 	},
+
+	"plugins": ["only-warn"],
+
 	"rules": {
-		"no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"]
+		"no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "never"],
+		"comma-dangle": ["error", "never"],
+		"indent": ["error", "tab"],
+		"arrow-parens": ["error", "as-needed"],
+		"dot-notation": ["error", { "allowPattern": "^[a-z]+(_[a-z]+)+$" }],
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"implicit-arrow-linebreak": ["error", "beside"],
+		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+		"object-curly-newline": ["error", { "consistent": true }]
 	}
 }

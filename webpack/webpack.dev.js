@@ -1,6 +1,6 @@
 const { merge } = require("webpack-merge")
-const webpackConfig = require("./webpack.config")
 const webpack = require("webpack")
+const webpackConfig = require("./webpack.config")
 
 const devWebpackconfig = merge(webpackConfig, {
 	mode: "development",
@@ -13,7 +13,7 @@ const devWebpackconfig = merge(webpackConfig, {
 		hot: false,
 		client: {
 			overlay: {
-				warnings: true,
+				warnings: false,
 				errors: true
 			}
 		},
@@ -54,15 +54,15 @@ const devWebpackconfig = merge(webpackConfig, {
 					},
 					{
 						loader: "eslint-loader"
-					},
-					{
-						test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-						type: "asset/resource",
-						generator: {
-							filename: `${PATHS.assets}img/[name]-[contenthash][ext]`
-						}
 					}
 				]
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+				type: "asset/resource",
+				generator: {
+					filename: `${webpackConfig.externals.paths.assets}img/[name]-[contenthash][ext]`
+				}
 			}
 		]
 	},
@@ -75,4 +75,6 @@ const devWebpackconfig = merge(webpackConfig, {
 	]
 })
 
-module.exports = new Promise((resolve, reject) => resolve(devWebpackconfig))
+module.exports = new Promise(resolve => {
+	resolve(devWebpackconfig)
+})
