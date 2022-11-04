@@ -70,8 +70,7 @@ const devWebpackconfig = merge(webpackConfig, {
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({
 			filename: "[file].map"
-		}),
-		new webpack.HotModuleReplacementPlugin()
+		})
 	]
 })
 
