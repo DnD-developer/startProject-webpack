@@ -13,7 +13,7 @@
 		"quotes": ["error", "double"],
 		"semi": ["error", "never"],
 		"comma-dangle": ["error", "never"],
-		"indent": ["error", "tab"],
+		"indent": [0],
 		"arrow-parens": ["error", "as-needed"],
 		"dot-notation": ["error", { "allowPattern": "^[a-z]+(_[a-z]+)+$" }],
 		"no-tabs": ["error", { "allowIndentationTabs": true }],
