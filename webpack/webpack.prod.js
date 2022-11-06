@@ -24,18 +24,7 @@ const prodWebpackConfig = merge(webpackConfig, {
 
 				exclude: "/node_modules/",
 				use: {
-					loader: "babel-loader",
-					options: {
-						presets: [
-							[
-								"@babel/preset-env",
-								{
-									useBuiltIns: "entry",
-									corejs: 3
-								}
-							]
-						]
-					}
+					loader: "babel-loader"
 				}
 			},
 			{
