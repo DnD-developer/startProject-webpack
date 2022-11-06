@@ -1,12 +1,13 @@
 {
-	"name": "start-package",
+	"name": "@dnd-developer/startproject-webpack",
 	"version": "1.0.0",
-	"description": " Starting assembly of D&D.projects for frontend development",
+	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"dev": "webpack-dev-server --open --config webpack/webpack.dev.js",
 		"build": "webpack --config webpack/webpack.prod.js",
-		"test": "jest"
+		"test": "jest",
+		"lint": "eslint ."
 	},
 	"jest": {
 		"collectCoverage": true
@@ -50,11 +51,8 @@
 		"type": "git",
 		"url": "https://github.com/DnD-developer/startProject-webpack.git"
 	},
-	"keywords": [
-		"webpack",
-		"D&D.projects"
-	],
-	"author": "SalimCat",
+	"keywords": [],
+	"author": "@dnd-developer",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/DnD-developer/startProject-webpack/issues"
