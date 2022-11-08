@@ -10,7 +10,10 @@
 		"lint": "eslint ."
 	},
 	"jest": {
-		"collectCoverage": true
+		"collectCoverage": true,
+		"transform": {
+			"^.+\\.[t|j]sx?$": "babel-jest"
+		}
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.19.3",
