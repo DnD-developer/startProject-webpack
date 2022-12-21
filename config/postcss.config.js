@@ -1,7 +1,7 @@
 const autoprefixer = require("autoprefixer")
 const cssnano = require("cssnano")
 
-module.exports = api => ({
+module.exports = () => ({
 	plugins: [
 		autoprefixer,
 		cssnano({
