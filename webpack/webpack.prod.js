@@ -28,6 +28,14 @@ const prodWebpackConfig = merge(webpackConfig, {
 				}
 			},
 			{
+				test: /\.tsx?$/,
+
+				exclude: "/node_modules/",
+				use: {
+					loader: "ts-loader"
+				}
+			},
+			{
 				test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
 				type: "asset/resource",
 				generator: {

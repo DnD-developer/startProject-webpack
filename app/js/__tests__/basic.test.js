@@ -1,1 +1,3 @@
-test("test for package", () => {})
+test("test for package", () => {
+	expect(true).toBe(true)
+})
