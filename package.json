@@ -9,13 +9,6 @@
 		"test": "jest",
 		"lint": "eslint ."
 	},
-	"jest": {
-		"collectCoverage": true,
-		"transform": {
-			"^.+\\.[t|j]sx?$": "babel-jest",
-			"preset": "ts-jest"
-		}
-	},
 	"devDependencies": {
 		"@babel/cli": "^7.19.3",
 		"@babel/core": "^7.19.6",
