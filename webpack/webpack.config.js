@@ -14,6 +14,9 @@ const PAGES_DIR = `${PATHS.app}/layout/pages/`
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith(".pug"))
 
 module.exports = {
+	resolve: {
+		extensions: [".ts", ".js"]
+	},
 	externals: {
 		paths: PATHS
 	},

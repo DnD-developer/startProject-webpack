@@ -1,3 +1,3 @@
 {
-	"compilerOptions": { "target": "es5", "module": "commonjs", "sourceMap": true, "outDir": "./dist", "rootDir": "./app" }
+	"compilerOptions": { "target": "es6", "module": "commonjs", "sourceMap": true, "outDir": "./dist", "rootDir": "./app" }
 }

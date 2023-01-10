@@ -1,5 +1,10 @@
 {
-	"extends": ["airbnb-base", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
+	"extends": [
+		"airbnb-base",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking"
+	],
 	"env": {
 		"es6": true,
 		"browser": true,
@@ -32,6 +37,9 @@
 		"no-useless-constructor": [0],
 		"@typescript-eslint/no-var-requires": [0],
 		"import/no-unresolved": [0],
-		"import/extensions": [0]
+		"import/extensions": [0],
+		"max-len": [0],
+		"no-underscore-dangle": [0],
+		"lines-between-class-members": [0]
 	}
 }
