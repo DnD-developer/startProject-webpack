@@ -1,3 +1,5 @@
 # Start Project of Webpack
 
-[![Build status](https://ci.appveyor.com/api/projects/status/e1a4p7lgbtxrd0fl?svg=true)](https://ci.appveyor.com/project/DnD-developer/startproject-webpack)
+![CI](https://github.com/DnD-developer/startproject-webpack/actions/workflows/deploy.yml/badge.svg?branch=master)
+
+![CI](https://github.com/DnD-developer/startproject-webpack/actions/workflows/build.yml/badge.svg?branch=dev)
