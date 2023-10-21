@@ -1,58 +1,48 @@
-name: Test and Build JS App
+name: Test and Build App
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - dev
-    paths-ignore:
-      - "./.gitignore"
-      - "./.github/*"
-      - "./.eslintrc"
-      - "./.eslintignore"
 
 jobs:
   test_App:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Cache Install
-        uses: actions/cache@v3
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: ${{ hashFiles('**/package-lock.json') }} - cashes
+          node-version: 16.x
 
-      - name: Install dependecies
-        run: npm ci
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
 
       - name: Test application
-        run: npm run test
+        run: yarn test
 
   lint_App:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Cache Install
-        uses: actions/cache@v3
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: ${{ hashFiles('**/package-lock.json') }} - cashes
+          node-version: 16.x
 
-      - name: Install dependecies
-        run: npm ci
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
 
       - name: Lint application
-        run: npm run lint
+        run: yarn lint
 
   build_App:
-    needs: [lint_App, test_App]
-
     strategy:
       matrix:
         node-version: [18.x]
@@ -61,22 +51,18 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
-      - name: Cache Install
-        uses: actions/cache@v3
+      - name: Run install
+        uses: borales/actions-yarn@v4
         with:
-          path: ~/.npm
-          key: ${{ hashFiles('**/package-lock.json') }} - cashes
-
-      - name: Install dependecies
-        run: npm ci
-
-      - name: Build application
-        run: npm run build
+          cmd: install
+      - name: Build production bundle
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
