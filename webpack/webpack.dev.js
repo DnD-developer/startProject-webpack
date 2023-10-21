@@ -1,6 +1,7 @@
 const { merge } = require("webpack-merge")
 const webpack = require("webpack")
 const webpackConfig = require("./webpack.config")
+const ESLintPlugin = require("eslint-webpack-plugin")
 
 const devWebpackconfig = merge(webpackConfig, {
 	mode: "development",
@@ -40,9 +41,6 @@ const devWebpackconfig = merge(webpackConfig, {
 				use: [
 					{
 						loader: "babel-loader"
-					},
-					{
-						loader: "eslint-loader"
 					}
 				]
 			},
@@ -53,9 +51,6 @@ const devWebpackconfig = merge(webpackConfig, {
 				use: [
 					{
 						loader: "ts-loader"
-					},
-					{
-						loader: "eslint-loader"
 					}
 				]
 			},
@@ -72,6 +67,9 @@ const devWebpackconfig = merge(webpackConfig, {
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({
 			filename: "[file].map"
+		}),
+		new ESLintPlugin({
+			extensions: ["js", "mjs", "jsx", "ts", "tsx"]
 		})
 	]
 })

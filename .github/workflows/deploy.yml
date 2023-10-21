@@ -1,59 +1,49 @@
-name: Deploy JS App
+name: Deploy App
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - "./.gitignore"
-      - "./.github/*"
-      - "./.eslintrc"
-      - "./.eslintignore"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build_App:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
-
-      - name: Cache Install
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ hashFiles('**/package-lock.json') }} - cashes
-
-      - name: Install dependecies
-        run: npm ci
-
-      - name: Build application
-        run: npm run build
-
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "dist"
-          name: "github-pages"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-
-  deploy_App:
-    needs: build_App
-
-    permissions:
-      pages: write
-      id-token: write
-
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./dist"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

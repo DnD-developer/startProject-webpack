@@ -48,12 +48,15 @@ module.exports = {
 					MiniCssExtractPlugin.loader,
 					{
 						loader: "css-loader",
-						options: { sourceMap: true }
+						options: { sourceMap: true, esModule: true }
 					},
 
 					{
 						loader: "postcss-loader",
-						options: { sourceMap: true, postcssOptions: { config: path.resolve(__dirname, "../postcss.config.js") } }
+						options: {
+							sourceMap: true,
+							postcssOptions: { config: path.resolve(__dirname, "../postcss.config.js") }
+						}
 					},
 
 					{
@@ -79,6 +82,14 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: `${PATHS.assets}css/[name]-[contenthash].css`
 		}),
-		...PAGES.map(page => new HTMLWebpackPlugin({ hash: false, scriptLoading: "blocking", template: `${PAGES_DIR}/${page}`, minify: false }))
+		...PAGES.map(
+			page =>
+				new HTMLWebpackPlugin({
+					hash: false,
+					scriptLoading: "blocking",
+					template: `${PAGES_DIR}/${page}`,
+					minify: false
+				})
+		)
 	]
 }
