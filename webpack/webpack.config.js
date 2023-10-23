@@ -1,3 +1,4 @@
+// @ts-nocheck
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
@@ -5,7 +6,7 @@ const fs = require("fs")
 
 const PATHS = {
 	dist: path.join(__dirname, "../dist"),
-	app: path.join(__dirname, "../app"),
+	app: path.join(__dirname, "../src"),
 	assets: "assets/"
 }
 PATHS.assetsStart = path.join(PATHS.app, "./layout/assets")
@@ -70,6 +71,13 @@ module.exports = {
 				type: "asset/resource",
 				generator: {
 					filename: `${PATHS.assets}fonts/[name]-[contenthash][ext]`
+				}
+			},
+			{
+				test: /\.(mp3)$/i,
+				type: "asset/resource",
+				generator: {
+					filename: `${PATHS.assets}audio/[name]-[contenthash][ext]`
 				}
 			},
 			{

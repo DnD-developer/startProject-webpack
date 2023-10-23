@@ -1,3 +1,4 @@
+// @ts-nocheck
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
 	collectCoverage: true,

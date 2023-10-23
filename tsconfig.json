@@ -1,17 +1,18 @@
 {
-	"exclude": ["./webpack/*.js", "./*.js"],
 	"compilerOptions": {
 		"strict": true,
 		"target": "ES2022",
 		"module": "ES6",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"rootDir": "./app",
-		"jsx": "react-jsx",
+		"rootDir": "./",
+		"jsx": "react",
 		"removeComments": true,
 		"noImplicitOverride": true,
+		"allowSyntheticDefaultImports": true,
 		"allowJs": true,
 		"checkJs": true,
+		"types": ["react/experimental", "jest", "mocha"],
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules",
