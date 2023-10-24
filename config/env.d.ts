@@ -7,12 +7,5 @@ declare namespace NodeJS {
     ```
      */
     API_ROOT: string
-/**
-     * @example
-     * ```
-    process.env.TEST
-    ```
-     */
-    TEST: string
   }
 }
