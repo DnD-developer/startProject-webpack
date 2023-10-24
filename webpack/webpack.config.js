@@ -1,3 +1,4 @@
+// @ts-nocheck
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
@@ -5,17 +6,19 @@ const fs = require("fs")
 
 const PATHS = {
 	dist: path.join(__dirname, "../dist"),
-	app: path.join(__dirname, "../app"),
+	app: path.join(__dirname, "../src"),
 	assets: "assets/"
 }
-PATHS.assetsStart = path.join(PATHS.app, "./layout/assets")
+PATHS.assetsStart = path.join(PATHS.app, "./assets")
 
-const PAGES_DIR = `${PATHS.app}/layout/pages/`
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith(".pug"))
+const PAGES_DIR = `${PATHS.app}/public`
+const PAGES = fs
+	.readdirSync(PAGES_DIR)
+	.filter(fileName => fileName.endsWith(".html") || fileName.endsWith(".pug"))
 
 module.exports = {
 	resolve: {
-		extensions: [".ts", ".js"]
+		extensions: [".tsx", ".ts", ".js"]
 	},
 	externals: {
 		paths: PATHS
@@ -43,12 +46,42 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.s[ac]ss$/i,
+				test: /^((?!\.module).)*s[ac]ss$/i,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
 						loader: "css-loader",
-						options: { sourceMap: true, esModule: true }
+						options: {
+							sourceMap: true
+						}
+					},
+
+					{
+						loader: "postcss-loader",
+						options: {
+							sourceMap: true,
+							postcssOptions: { config: path.resolve(__dirname, "../postcss.config.js") }
+						}
+					},
+
+					{
+						loader: "sass-loader",
+						options: { sourceMap: true }
+					}
+				]
+			},
+			{
+				test: /\.module\.s[ac]ss$/i,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: "css-loader",
+						options: {
+							sourceMap: true,
+							modules: {
+								localIdentName: "[local]__[sha1:hash:hex:77]"
+							}
+						}
 					},
 
 					{
@@ -70,6 +103,13 @@ module.exports = {
 				type: "asset/resource",
 				generator: {
 					filename: `${PATHS.assets}fonts/[name]-[contenthash][ext]`
+				}
+			},
+			{
+				test: /\.(mp3)$/i,
+				type: "asset/resource",
+				generator: {
+					filename: `${PATHS.assets}audio/[name]-[contenthash][ext]`
 				}
 			},
 			{

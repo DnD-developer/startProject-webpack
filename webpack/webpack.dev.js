@@ -1,7 +1,9 @@
+// @ts-nocheck
 const { merge } = require("webpack-merge")
 const webpack = require("webpack")
 const webpackConfig = require("./webpack.config")
 const ESLintPlugin = require("eslint-webpack-plugin")
+const Dotenv = require("dotenv-webpack")
 
 const devWebpackconfig = merge(webpackConfig, {
 	mode: "development",
@@ -70,7 +72,8 @@ const devWebpackconfig = merge(webpackConfig, {
 		}),
 		new ESLintPlugin({
 			extensions: ["js", "mjs", "jsx", "ts", "tsx"]
-		})
+		}),
+		new Dotenv()
 	]
 })
 
