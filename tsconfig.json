@@ -12,13 +12,12 @@
 		"allowSyntheticDefaultImports": true,
 		"allowJs": true,
 		"checkJs": true,
-		"types": ["react/experimental", "jest", "mocha"],
+		"types": ["react/experimental", "jest", "mocha", "node"],
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules",
 				"options": {
 					"classnameTransform": "dashes"
-					// "customMatcher": "\\.module\\.(c|le|sa|sc)ss$"
 				}
 			}
 		]

@@ -1,8 +1,9 @@
 // utils
 import React from "react"
 import ReactDOM from "react-dom/client"
+import App from "./App"
 
-const rootElement = document.getElementById("root")
+const rootElement = document.querySelector("#root")
 
 if (!rootElement) throw new Error("Failed to find the root element")
 
@@ -10,6 +11,7 @@ const root = ReactDOM.createRoot(rootElement)
 
 root.render(
 	<React.StrictMode>
-		<div />
+		<h1>Привет</h1>
+		<App />
 	</React.StrictMode>
 )
