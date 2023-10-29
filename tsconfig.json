@@ -1,11 +1,12 @@
 {
+	"exclude": ["./coverage/**/*.js", "./webpack/**/*.js", "./*.js", "./dist/**/*.js"],
 	"compilerOptions": {
 		"strict": true,
 		"target": "ES2022",
 		"module": "ES6",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"rootDir": "./",
+		"rootDir": "./src",
 		"jsx": "react",
 		"removeComments": true,
 		"noImplicitOverride": true,

@@ -1,3 +1,3 @@
 import "./app/main"
-import "./app/scss/style.scss"
+import "./app/styles/style.scss"
 import "./public/index.html"
