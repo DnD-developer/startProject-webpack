@@ -2,10 +2,10 @@
 
 ### Run commands:
 
--   **Dev**: `yarn dev`
--   **Prod**: `yarn build`
--   **Lint**: `yarn lint`
--   **Test**: `yarn test`
+-   **Dev**: `yarn run dev`
+-   **Prod**: `yarn run build`
+-   **Lint**: `yarn run lint`
+-   **Test**: `yarn run test`
 
 ### GitHub Pages:
 
